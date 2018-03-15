@@ -9,6 +9,8 @@ It uses:
 
 ## Using
 
+Setup the databases with `mix setup_db` and then run `iex -S mix`
+
 ```elixir
 iex> Coins.mine_coin("me", 1)
 {:error, :invalid_nonce}
