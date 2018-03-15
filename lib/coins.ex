@@ -16,7 +16,7 @@ defmodule Coins do
       account_id: account_id,
       nonce: nonce
     }
-    |> Router.dispatch
+    |> Router.dispatch()
   end
 
   def send_coins(from, to, amount) do
@@ -24,16 +24,17 @@ defmodule Coins do
       account_id: from,
       to: to,
       amount: amount,
-      transfer_id: UUID.uuid4
+      transfer_id: UUID.uuid4()
     }
-    |> Router.dispatch
+    |> Router.dispatch()
   end
 
   def richest do
     import Ecto.Query
+
     Schemas.Account
     |> order_by(desc: :balance)
     |> limit(1)
-    |> Repo.one
+    |> Repo.one()
   end
 end

@@ -11,7 +11,7 @@ defmodule Coins.Supervisor do
     children = [
       {Coins.Repo, []},
       {Coins.AccountProjector, []},
-      {Coins.SendCoinsProcess, []},
+      {Coins.SendCoinsProcess, []}
     ]
 
     Supervisor.init(children, strategy: :one_for_one)

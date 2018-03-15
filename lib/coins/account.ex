@@ -13,10 +13,11 @@ defmodule Coins.Account do
     CoinsReceived
   }
 
-  defstruct [balance: 0, last_nonce: 0]
+  defstruct balance: 0, last_nonce: 0
 
   def execute(%{last_nonce: ln}, %MineCoin{nonce: n})
-    when n < ln, do: {:error, :used_nonce}
+      when n < ln,
+      do: {:error, :used_nonce}
 
   def execute(_, %MineCoin{} = cmd) do
     if Proof.proof(cmd.account_id, cmd.nonce) do
@@ -29,8 +30,7 @@ defmodule Coins.Account do
     end
   end
 
-  def execute(%{balance: b}, %SendCoins{amount: a}) when a > b,
-    do: {:error, :not_enough_coins}
+  def execute(%{balance: b}, %SendCoins{amount: a}) when a > b, do: {:error, :not_enough_coins}
 
   def execute(_, %SendCoins{} = cmd) do
     %CoinsSent{
@@ -50,7 +50,7 @@ defmodule Coins.Account do
   end
 
   def apply(state, %CoinMined{} = evt) do
-    %Account{ state | last_nonce: evt.nonce }
+    %Account{state | last_nonce: evt.nonce}
     |> increase_balance(1)
   end
 

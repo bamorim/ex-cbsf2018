@@ -1,10 +1,8 @@
 use Mix.Config
 
-config :logger, level: String.to_atom((System.get_env "LOGLVL") || "error")
+config :logger, level: String.to_atom(System.get_env("LOGLVL") || "error")
 
-
-config :coins,
-  ecto_repos: [Coins.Repo]
+config :coins, ecto_repos: [Coins.Repo]
 
 config :coins, Coins.Repo,
   adapter: Ecto.Adapters.Postgres,
@@ -15,8 +13,7 @@ config :coins, Coins.Repo,
   port: 5432,
   pool_size: 10
 
-config :commanded,
-  event_store_adapter: Commanded.EventStore.Adapters.EventStore
+config :commanded, event_store_adapter: Commanded.EventStore.Adapters.EventStore
 
 # Configure the event store database
 config :eventstore, EventStore.Storage,
@@ -28,5 +25,4 @@ config :eventstore, EventStore.Storage,
   port: 5432,
   pool_size: 10
 
-config :commanded_ecto_projections,
-  repo: Coins.Repo
+config :commanded_ecto_projections, repo: Coins.Repo

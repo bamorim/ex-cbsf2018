@@ -1,6 +1,5 @@
 defmodule Coins.AccountProjector do
-  use Commanded.Projections.Ecto,
-    name: "AccountProjector"
+  use Commanded.Projections.Ecto, name: "AccountProjector"
 
   alias Coins.Events, as: E
   alias Coins.Schemas, as: S

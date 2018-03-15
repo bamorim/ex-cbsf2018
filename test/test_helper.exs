@@ -1,1 +1,1 @@
-ExUnit.start([skip: :skip])
+ExUnit.start(skip: :skip)
