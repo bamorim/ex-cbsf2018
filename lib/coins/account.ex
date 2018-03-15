@@ -15,8 +15,8 @@ defmodule Coins.Account do
 
   defstruct [balance: 0, last_nonce: 0]
 
-  def execute(%{last_nonce: ln}, %MineCoin{nonce: n}) when ln >= n,
-    do: {:error, :used_nonce}
+  def execute(%{last_nonce: ln}, %MineCoin{nonce: n})
+    when n < ln, do: {:error, :used_nonce}
 
   def execute(_, %MineCoin{} = cmd) do
     if Proof.proof(cmd.account_id, cmd.nonce) do
