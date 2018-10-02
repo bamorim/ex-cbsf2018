@@ -27,7 +27,7 @@ iex> Coins.mine_coin("me", 443)
 iex> Coins.richest |> Map.take([:account_id, :balance])
 %{account_id: "me", balance: 1}
 
-iex> [488, 1442, 1597] |> Enum.map(&(Coin.mine_coin("you" &1)))
+iex> [488, 1442, 1597] |> Enum.map(&(Coins.mine_coin("you", &1)))
 [:ok, :ok, :ok]
 
 iex> Coins.richest |> Map.take([:account_id, :balance])
